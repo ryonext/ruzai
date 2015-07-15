@@ -3,7 +3,7 @@ require "active_support"
 require "active_support/core_ext"
 
 module UserBan
-  attr_accessor :suspention_expired_at
+  attr_accessor :suspention_expired_at, :suspended_count
   include ActiveSupport::Configurable
   config_accessor :suspention_duration, :respawn_limit
 
@@ -13,6 +13,7 @@ module UserBan
   end
 
   def suspended?
+    return true if (self.suspended_count || 0) > UserBan.respawn_limit
     return false unless suspention_expired_at
     self.suspention_expired_at > Time.now
   end
@@ -26,6 +27,8 @@ module UserBan
   end
 
   def suspend!
+    self.suspended_count ||=0
+    self.suspended_count += 1
     self.suspention_expired_at = UserBan.suspention_duration.from_now
   end
 end

@@ -37,6 +37,14 @@ describe UserBan do
         Timecop.return
       end
     end
+
+    context 'Over respawn limit' do
+      before do
+        user.suspended_count = 6
+      end
+
+      it { is_expected.to be true }
+    end
   end
 
   describe 'suspended_until' do
