@@ -1,8 +1,8 @@
-require "user_ban/version"
+require "ruzai/version"
 require "active_support"
 require "active_support/core_ext"
 
-module UserBan
+module Ruzai
   attr_accessor :suspention_expired_at, :suspended_count
   include ActiveSupport::Configurable
   config_accessor :suspention_duration, :respawn_limit
