@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'user_ban/version'
+require 'ruzai/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "user_ban"
-  spec.version       = UserBan::VERSION
+  spec.name          = "ruzai"
+  spec.version       = Ruzai::VERSION
   spec.authors       = ["ryonext"]
   spec.email         = ["ryonext.s@gmail.com"]
 
