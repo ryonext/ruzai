@@ -11,7 +11,7 @@ describe Ruzai do
 
   let(:user){ TestUser.new }
 
-  describe 'suspended?' do
+  describe '#suspended?' do
     subject { user.suspended? }
 
     context 'Non suspended user' do
@@ -47,7 +47,7 @@ describe Ruzai do
     end
   end
 
-  describe 'suspended_until' do
+  describe '#suspended_until' do
     subject { user.suspended_until }
 
     context 'Non suspended user' do
@@ -62,7 +62,7 @@ describe Ruzai do
     end
   end
 
-  describe 'suspend!' do
+  describe '#suspend!' do
     subject { user.suspend! }
 
     it "User's expired date is set to 2 weeks later." do
