@@ -13,7 +13,7 @@ module Ruzai
   end
 
   def suspended?
-    return true if (self.suspended_count || 0) > UserBan.respawn_limit
+    return true if (self.suspended_count || 0) > Ruzai.respawn_limit
     return false unless suspention_expired_at
     self.suspention_expired_at > Time.now
   end
@@ -29,6 +29,6 @@ module Ruzai
   def suspend!
     self.suspended_count ||=0
     self.suspended_count += 1
-    self.suspention_expired_at = UserBan.suspention_duration.from_now
+    self.suspention_expired_at = Ruzai.suspention_duration.from_now
   end
 end

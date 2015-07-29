@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 class TestUser
-  include UserBan
+  include Ruzai
 end
 
-describe UserBan do
+describe Ruzai do
   it 'has a version number' do
-    expect(UserBan::VERSION).not_to be nil
+    expect(Ruzai::VERSION).not_to be nil
   end
 
   let(:user){ TestUser.new }
@@ -72,7 +72,7 @@ describe UserBan do
 
     context 'Set expired date' do
       before do
-        UserBan.configure do |config|
+        Ruzai.configure do |config|
           config.suspention_duration = 3.days
         end
       end
