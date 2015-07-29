@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class TestUser
+class TestUser < ActiveRecord::Base
   include Ruzai
 end
 
@@ -92,6 +92,15 @@ describe Ruzai do
         subject
         expect(user.suspention_expired_at.to_date).to eq Date.today + 3.days
       end
+    end
+  end
+
+  describe '#ban' do
+    subject { user.ban! }
+
+    it "User's respawn limit is over" do
+      subject
+      expect(user.suspended_count).to be Ruzai.respawn_limit + 1
     end
   end
 end

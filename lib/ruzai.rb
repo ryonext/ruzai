@@ -1,6 +1,7 @@
 require "ruzai/version"
 require "active_support"
 require "active_support/core_ext"
+require "active_record"
 
 module Ruzai
   attr_accessor :suspention_expired_at, :suspended_count
@@ -30,5 +31,11 @@ module Ruzai
     self.suspended_count ||=0
     self.suspended_count += 1
     self.suspention_expired_at = Ruzai.suspention_duration.from_now
+    self.save!
+  end
+
+  def ban!
+    self.suspended_count = Ruzai.respawn_limit + 1
+    self.save!
   end
 end
