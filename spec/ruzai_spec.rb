@@ -45,6 +45,17 @@ describe Ruzai do
 
       it { is_expected.to be true }
     end
+
+    context 'Edit respawn limit' do
+      before do
+        Ruzai.configure do |config|
+          config.respawn_limit = 3
+        end
+        user.suspended_count = 4
+      end
+
+      it { is_expected.to be true }
+    end
   end
 
   describe '#suspended_until' do
