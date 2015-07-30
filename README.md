@@ -44,12 +44,37 @@ end
 
 ### Suspend user's account.
 
-TODO: Write it later.
+* `Ruzai#suspend!`
 
+You can suspend user's account for a while. (Default value is 2 weeks, and you can configure it.)
+In addition, when user gets suspended a certain number of times, user's suspention is not released.(Default value is 5)
+
+* `Ruzai#suspended?`
+
+You can check a user is suspended or not.
+
+* `Ruzai#suspended_until`
+
+You can get a remain duration until user's suspention is released.
+
+* `Ruzai#ban!`
+
+You can ban a terrible user eternally.
 
 ### Configuring
 
-TODO: Write it later.
+You can set suspention duration and suspention limit.
+
+`suspention_duration` is duration of suspention.
+`respawn_limit` is max number which user can released from their suspention.
+
+Please create config/initializes/ruzai.rb and write like this.
+
+```
+Ruzai.configure do |config|
+  config.suspention_duration = 5.days
+  config.respawn_limit = 3
+```
 
 ## Development
 
