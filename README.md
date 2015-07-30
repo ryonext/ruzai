@@ -1,4 +1,4 @@
-# UserBan
+# Ruzai
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/user_ban`. To experiment with that code, run `bin/console` for an interactive prompt.
 
@@ -9,7 +9,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'user_ban'
+gem 'ruzai'
 ```
 
 And then execute:
@@ -22,7 +22,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Migrate your model which manages user's suspention
+
+`bundle exec rake ruzai:install {your model name}`
+(Default value is 'User')
+
+and run `bundle exec rake db:migrate`
+
+so, you can get "suspended_count" and "suspention_expired_at" for the model.
+
+### Include Ruzai for your model.
+
+If your model name is "User", write below.
+
+```
+class User < ActiveRecord::Base
+  include Ruzai
+  # your codes...
+end
+```
 
 ## Development
 
