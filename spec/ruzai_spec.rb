@@ -103,4 +103,16 @@ describe Ruzai do
       expect(user.suspended_count).to be Ruzai.respawn_limit + 1
     end
   end
+
+  describe "#remove_suspention!" do
+    before do
+      user.suspend!
+    end
+    subject { user.remove_suspention! }
+
+    it "User's suspention date become nil" do
+      subject
+      expect(user.suspention_expired_at).to be_nil
+    end
+  end
 end

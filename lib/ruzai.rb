@@ -38,4 +38,9 @@ module Ruzai
     self.suspended_count = Ruzai.respawn_limit + 1
     self.save!
   end
+
+  def remove_suspention!
+    self.suspention_expired_at = nil
+    self.save!
+  end
 end
