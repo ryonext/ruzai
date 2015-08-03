@@ -115,4 +115,43 @@ describe Ruzai do
       expect(user.suspention_expired_at).to be_nil
     end
   end
+
+  describe "#suspended_before?" do
+    context "suspended before" do
+      before do
+        user.suspend!
+        Timecop.freeze(Date.today + 20)
+      end
+
+      subject { user.suspended_before? }
+
+      it "returns true" do
+        expect(subject).to be true
+      end
+
+      after do
+        Timecop.return
+      end
+    end
+
+    context "not suspended before" do
+      subject { user.suspended_before? }
+
+      it "returns true" do
+        expect(subject).to be false
+      end
+    end
+
+    context "suspended now" do
+      before do
+        user.suspend!
+      end
+
+      subject { user.suspended_before? }
+
+      it "returns true" do
+        expect(subject).to be false
+      end
+    end
+  end
 end

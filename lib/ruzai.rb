@@ -43,4 +43,9 @@ module Ruzai
     self.suspention_expired_at = nil
     self.save!
   end
+
+  def suspended_before?
+    return false unless self.suspention_expired_at
+    self.suspention_expired_at < Time.now
+  end
 end
