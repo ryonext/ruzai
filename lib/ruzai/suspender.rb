@@ -2,7 +2,6 @@ require "ruzai/version"
 require "active_record"
 
 module Ruzai
-  attr_accessor :suspention_expired_at, :suspended_count
   def suspended?
     return true if (self.suspended_count || 0) > Ruzai.respawn_limit
     return false unless suspention_expired_at
